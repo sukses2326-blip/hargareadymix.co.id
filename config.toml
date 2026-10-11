@@ -1,0 +1,307 @@
+baseURL = "https://hargareadymix.co.id/"
+languageCode = "id"
+title = "Harga Readymix - Melayani Supply Readymix, Beton Precast & Sewa Concrete Pump Sepenuh Hati"
+theme = "saeseen-hugo"
+summaryLength = 25
+paginate = 6
+
+[permalinks]
+  post = "/:slug/"
+  page = "/:slug/"
+  category = "/:slug/"
+
+[params]
+  # Site-wide settings
+  meta_description = "Layanan Supply Readymix, Beton Precast & Sewa Concrete Pump Terbaik"
+  viewport = "width=device-width, initial-scale=1.0"
+  fontawesome = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+  logo = "/images/logo-1.png"
+  logo_amp = "/images/logo-3.png"
+  footer_logo = "/images/logo-2.png"
+  favicon = "/images/logo-3.png"
+  featured_image = "/images/featured-image.png"
+  author = "Kanjeng Sunan"
+  telepon = "//+6281282678939"
+  whatsapp = "//api.whatsapp.com/send?phone=6281282678939&text=Halo%20HargaReadymix%20"
+  enableWhatApps = true
+  enableTelepon = true
+  tocMinWordCount = 300
+  tableOfContent = "Daftar Isi:"
+  geo_latitude = -6.595038
+  geo_longitude = 106.817787
+  opening_hours = "Mo-Sa 08:00-17:00"
+
+# Schema settings
+base_price = 750000
+price_max = 3750000
+
+# Schema SEO - nilai statis agar konsisten di setiap build
+site_rating = "4.8"
+site_rating_count = "298"
+site_rating_best = "5"
+site_rating_worst = "1"
+postal_code = "16165"
+sku_prefix = "HR"
+categories = ["Beton Ready Mix", "Beton Precast", "Concrete Pump"]
+payment_methods = ["COD (Bayar di Tempat)", "Transfer Bank", "DP 50%", "Bayar Saat Tiba", "Bayar Bertahap", "Transfer Setelah Selesai"]
+area_served = ["Jakarta", "Bogor", "Depok", "Tangerang", "Bekasi", "Cikarang", "Karawang", "Bandung", "Serang", "Purwakarta", "Cilegon", "Rangkasbitung"]
+keywords = ["jual beton ready mix", "beton truk molen", "boxculvert beton", "concrete pump", "beton uditch", "beton panel"]
+free_shipping = true
+
+# Product
+materials = [
+  "Beton Ready Mix B0",
+  "Beton Ready Mix K225",
+  "Beton Ready Mix K250",
+  "Beton Ready Mix K300",
+  "Beton Ready Mix K350",
+  "Beton Uditch",
+  "Pagar Panel",
+  "Beton Boc Culvert"
+]
+return_policies = [
+  "Pengembalian dalam 1 hari jika produk tidak sesuai.",
+  "Tolak barang jika kualitas tidak sesuai spesifikasi.",
+  "Gratis biaya pengembalian untuk produk yang salah kirim."
+]
+
+# Service
+service_types = [
+  "Sewa Concrete Pump Kodok",
+  "Sewa Concrete Pump Super Long",
+  "Sewa Concrete Pump Long Boom",
+  "Sewa Pompa Beton Mini",
+  "Sewa Pompa Beton Master Long Boom"
+]
+cancellation_policies = [
+  "Pembatalan dapat dilakukan jika layanan tidak sesuai perjanjian.",
+  "Pengembalian dana jika hasil tidak memuaskan.",
+  "Revisi tanpa biaya tambahan jika kualitas layanan kurang optimal."
+]
+service_output = "Hasil pengecoran yang lebih cepat dan presisi dengan pompa beton handal untuk proyek cor Anda."
+
+# Informasi Perusahaan
+companyName = "CV. Potensi Indonesia"
+aboutUs = "Kami menyediakan jasa pengecoran dengan armada truk molen dan concrete pump terbaik untuk semua kebutuhan pengecoran, kami juga menyediakan beton precast uditch, pagar panel dan boxculvert dengan pengiriman cepat ke wilayah Jabodetabek dan sekitarnya."
+companyWeb = "hargareadymix.co.id"
+
+  # Informasi Kontak
+  phone = "0812-8267-8939"
+  email = "hargareadymixcoid@gmail.com"
+  address = "Jl. Raya Cilebut Jembatan II Rt 01 RW 03, Kel. Sukaresmi, Kec. Tanah Sareal, Kota Bogor 16165"
+  whatsappNumber = "6281282678939"
+
+ # Hero Section
+hero_image = "/images/bg_readymix_gelap.png"
+hero_title = "Layanan Beton Ready Mix dan Beton Precast"
+hero_description = "Dapatkan layanan pengecoran beton berkualitas dengan armada truk molen dan concrete pump juga beton precast untuk kebutuhan konstruksibangunan Anda. Solusi tepat untuk membangun dengan cara yang cepat dan hasil yang maksimal."
+hero_cta_text = "Produk & Layanan"
+services_cta_text = "Lihat Produk Beton Kami"
+
+# Footer Section
+footer_about_title = "Kenapa Memilih Layanan Kami?"
+footer_about_description = "Kami menghadirkan beton siap pakai berkualitas tinggi dengan berbagai pilihan mutu, pengiriman cepat, dan konsultasi gratis agar proyek bangunan Anda berjalan lancar sesuai perencanaan."
+
+footer_services_title = "Tentang Kami"
+footer_contact_title = "Hubungi Kami"
+footer_bottom_text = "@2024 HR. Hak Cipta Dilindungi."
+
+# Testimonials Section
+testimonials_title = "Pendapat Klien Kami"
+listhome_title = "Produk & Layanan Kami"
+
+[[params.footer_services]]
+text = "hargareadymix.co.id adalah jasa pengecoran dengan armada truk molen dan concrete pump terbaik untuk semua kebutuhan pengecoran, kami juga menyediakan beton precast uditch, pagar panel dan boxculvert dengan pengiriman cepat ke wilayah jabodetabek dan sekitarnya."
+
+  [[params.footer_contact]]
+    icon = "fas fa-map-marker-alt"
+    text = "Jl. Raya Cilebut Jembatan II Rt 01 RW 03, Kel. Sukaresmi, Kec. Tanah Sareal, Kota Bogor 16165"
+  [[params.footer_contact]]
+    icon = "fas fa-phone-alt"
+    text = "0812-8267-8939"
+  [[params.footer_contact]]
+    icon = "fas fa-envelope"
+    text = "hargareadymixcoid@gmail.com"
+
+[[params.testimonials]]
+avatar = "/images/admin/avatar1.png"
+name = "{Budi|Joko|Andi|Eko|Rudi|Fajar|Hendra|Samsul|Agus|Dedi}"
+message = "{Saya {sangat puas|senang} dengan layanan jual beton ready mix dari perusahaan ini. Kualitas beton {sangat baik|memenuhi standar} dan pengirimannya {tepat waktu|sangat profesional}.|Produk beton ready mix yang {saya pesan|diterima} {berkualitas tinggi|sesuai kebutuhan} untuk proyek konstruksi saya.}"
+response = "{Terima kasih telah memilih layanan kami! Kami senang dapat memenuhi kebutuhan beton ready mix Anda.|Kami berkomitmen untuk selalu memberikan kualitas terbaik dalam setiap pengiriman beton.}"
+rating = 5
+
+[[params.testimonials]]
+avatar = "/images/admin/avatar2.png"
+name = "{Siti|Dewi|Rina|Maya|Lina|Sari|Fitri|Nur|Diah|Ayu}"
+message = "{Boxculvert beton dari perusahaan ini {sangat membantu|memenuhi kebutuhan} proyek drainase saya. Kualitas dan dimensi {sesuai spesifikasi|sangat presisi}.|Produk boxculvert beton yang {saya terima|dipesan} {sangat berkualitas|memenuhi standar teknis} untuk infrastruktur.}"
+response = "{Kami senang produk boxculvert beton kami membantu proyek Anda.|Terima kasih telah mempercayakan kebutuhan infrastruktur Anda kepada kami.}"
+rating = 5
+
+[[params.testimonials]]
+avatar = "/images/admin/avatar3.png"
+name = "{Joko|Bambang|Hadi|Tono|Gilang|Bayu|Faisal|Rizal|Ali|Ahmad}"
+message = "{Layanan concrete pump yang {disediakan|diberikan} sangat {profesional|efisien}. Membantu {mempercepat|mengoptimalkan} proses pengecoran beton di proyek saya.|Concrete pump dari perusahaan ini {memudahkan|mendukung} pekerjaan konstruksi dengan {kinerja tinggi|teknologi canggih}.}"
+response = "{Kami senang concrete pump kami membantu kelancaran proyek Anda.|Terima kasih telah memilih layanan kami untuk kebutuhan pengecoran.}"
+rating = 4
+
+[[params.testimonials]]
+avatar = "/images/admin/avatar4.png"
+name = "{Andi|Eko|Deni|Hendra|Toni|Wawan|Gilang|Ari|Benny|Yudi}"
+message = "{Beton uditch yang saya pesan {sangat berkualitas|sesuai kebutuhan} untuk sistem drainase. Ketahanan dan kualitasnya {di atas ekspektasi|luar biasa}.|Produk beton uditch {membantu menyelesaikan|mengoptimalkan} sistem saluran air dengan {sempurna|presisi}.}"
+response = "{Kami bangga produk beton uditch kami memenuhi kebutuhan infrastruktur Anda.|Terima kasih telah mempercayakan kebutuhan drainase kepada kami.}"
+rating = 4
+
+[[params.testimonials]]
+avatar = "/images/admin/avatar5.png"
+name = "{Rina|Siti|Lina|Dewi|Ayu|Sari|Fitri|Maya|Nur|Diah}"
+message = "{Beton panel yang saya gunakan {sangat membantu|menghemat waktu} dalam proses konstruksi. Kualitas dan desain {sesuai standar|inovatif}.|Produk beton panel {memudahkan|mempercepat} pembangunan dengan {presisi|kualitas} tinggi.}"
+response = "{Kami senang beton panel kami membantu efisiensi proyek konstruksi Anda.|Terima kasih telah memilih solusi beton modern dari kami.}"
+rating = 4
+
+[[params.testimonials]]
+avatar = "/images/admin/avatar6.png"
+name = "{Eko|Rio|Galih|Faisal|Yanto|Benny|Toni|Deni|Rizal|Wawan}"
+message = "{Layanan pengiriman beton ready mix dengan kualitas premium. Sangat membantu dalam menyelesaikan proyek konstruksi dengan cepat dan efisien.|Produk dan layanan beton ready mix dari perusahaan ini {profesional|tepat waktu} dan {sesuai kebutuhan|berkualitas tinggi}.}"
+response = "{Kami berkomitmen untuk memberikan layanan terbaik dalam setiap pengiriman.|Terima kasih telah memilih kami sebagai mitra konstruksi Anda.}"
+rating = 4
+
+[[params.tabelItems]]
+name = "K225"
+price = "850.000 - 880.000"
+[[params.tabelItems]]
+name = "K250"
+price = "865.000 - 895.000"
+[[params.tabelItems]]
+name = "K300"
+price = "885.000 - 1.020.000"
+[[params.tabelItems]]
+name = "K350"
+price = "925.000 - 1.100.000"
+[[params.tabelItems]]
+name = "K400"
+price = "970.000 - 1.120.000"
+
+[params.appliList]
+K225 = "Rumah tinggal, Ruko"
+K250 = "Bangunan bertingkat rendah"
+K300 = "Gedung bertingkat, jembatan"
+K350 = "Fondasi gedung tinggi"
+K400 = "Proyek cor spek khusus"
+
+[params.kegunaanList]
+K225 = "Jalan perumahan, Jalan lingkungan"
+K250 = "Bangunan tol, Jalan raya"
+K300 = "Lapangan Olahraga"
+K350 = "Fast track, Jembatan dll."
+K400 = "Proyek pengecoran spesifikasi khusus"
+
+[[params.pumpItems]]
+type = "Mini Concrete Pump"
+price = "3.500.000"
+[[params.pumpItems]]
+type = "Concrete Pump Standard"
+price = "4.500.000"
+[[params.pumpItems]]
+type = "Long Boom Concrete Pump"
+price = "7.500.000"
+[[params.pumpItems]]
+type = "Super Long Boom Concrete Pump"
+price = "9.500.000"
+
+[[params.boxculvertItems]]
+size = "40 x 40 x 100"
+price = "350.000"
+[[params.boxculvertItems]]
+size = "60 x 60 x 100"
+price = "525.000"
+[[params.boxculvertItems]]
+size = "80 x 80 x 100"
+price = "750.000"
+[[params.boxculvertItems]]
+size = "100 x 100 x 100"
+price = "1.250.000"
+
+[[params.uditchItems]]
+size = "30 x 30 x 120"
+price = "185.000"
+[[params.uditchItems]]
+size = "40 x 40 x 120"
+price = "275.000"
+[[params.uditchItems]]
+size = "50 x 50 x 120"
+price = "375.000"
+[[params.uditchItems]]
+size = "60 x 60 x 120"
+price = "450.000"
+
+[[params.panelItems]]
+type = "Panel Pagar Polos"
+height = "180 cm"
+price = "175.000"
+[[params.panelItems]]
+type = "Panel Pagar Motif"
+height = "180 cm"
+price = "195.000"
+[[params.panelItems]]
+type = "Panel Pagar Double"
+height = "180 cm"
+price = "225.000"
+
+  # Menu Section
+  [[params.menu_items]]
+    title = "Beranda"
+    url = "/"
+  [[params.menu_items]]
+    title = "Profile"
+    url = "/profile/"
+
+  [[params.menu_items]]
+    title = "Concret Pump"
+    url = "/pompa-beton/"
+
+  [[params.menu_items]]
+    title = "Readymix"
+    url = "/readymix/"
+
+  [[params.menu_items]]
+    title = "Pagar"
+    url = "/pagar-panel/"
+
+  [[params.menu_items]]
+    title = "Boxculvert"
+    url = "/boxculvert/"
+
+  [[params.menu_items]]
+    title = "Uditch"
+    url = "/uditch/"
+
+[params.header]
+   title = "Layanan Supply Readymix, Beton Precast & Sewa Concrete Pump Terbaik | "
+   highlight = "HargaReadymix.co.id"
+
+[markup]
+  [markup.tableOfContents]
+    startLevel = 1
+    endLevel = 3
+
+[related]
+  threshold = 80
+  includeNewer = true
+  toLower = false
+
+[[related.indices]]
+  name = "categories"
+  weight = 100
+
+[outputs]
+  home = ["HTML", "RSS"]
+  page = ["HTML", "AMP"]
+
+[outputFormats]
+  [outputFormats.AMP]
+    mediaType = "text/html"
+    baseName = "amp/index"
+    path = ""
+    isPlainText = false
+    permalinkable = true
+    rel = "amphtml"

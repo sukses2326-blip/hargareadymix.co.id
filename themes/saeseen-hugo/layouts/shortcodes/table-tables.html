@@ -1,0 +1,119 @@
+{{ with .Get "table" }}
+  {{ if eq . "table1" }}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Mutu Beton</th>
+          <th>Harga per m³ (Rp)</th>
+          <th>Aplikasi Utama</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range $.Site.Params.tabelItems }}
+        <tr>
+          <td>{{ .name }}</td>
+          <td>{{ .price }}</td>
+          <td>{{ index $.Site.Params.appliList .name }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+
+  {{ else if eq . "table2" }}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Mutu Beton</th>
+          <th>Harga per m³ (Rp)</th>
+          <th>Kegunaan Utama</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range $.Site.Params.tabelItems }}
+        <tr>
+          <td>{{ .name }}</td>
+          <td>{{ .price }}</td>
+          <td>{{ index $.Site.Params.kegunaanList .name }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+
+  {{ else if eq . "table3" }}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Jenis Concrete Pump</th>
+          <th>Harga Sewa per Hari (Rp)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range $.Site.Params.pumpItems }}
+        <tr>
+          <td>{{ .type }}</td>
+          <td>{{ .price }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+
+  {{ else if eq . "table4" }}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Ukuran Box Culvert</th>
+          <th>Harga per Unit (Rp)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range $.Site.Params.boxculvertItems }}
+        <tr>
+          <td>{{ .size }}</td>
+          <td>{{ .price }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+
+  {{ else if eq . "table5" }}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Ukuran U-Ditch</th>
+          <th>Harga per Unit (Rp)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range $.Site.Params.uditchItems }}
+        <tr>
+          <td>{{ .size }}</td>
+          <td>{{ .price }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+
+  {{ else if eq . "table6" }}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Jenis Panel Pagar</th>
+          <th>Tinggi</th>
+          <th>Harga per m² (Rp)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range $.Site.Params.panelItems }}
+        <tr>
+          <td>{{ .type }}</td>
+          <td>{{ .height }}</td>
+          <td>{{ .price }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+
+  {{ else }}
+    <p>Invalid table selection.</p>
+  {{ end }}
+{{ end }}

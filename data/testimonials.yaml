@@ -1,0 +1,45 @@
+testimonials:
+  - avatar: /images/admin/avatar1.png
+    name: Andi
+    message: >-
+      Produk beton ready mix yang diterima berkualitas tinggi untuk proyek
+      konstruksi saya.
+    response: >-
+      Kami berkomitmen untuk selalu memberikan kualitas terbaik dalam setiap
+      pengiriman beton.
+    rating: 5
+  - avatar: /images/admin/avatar2.png
+    name: Siti
+    message: >-
+      Boxculvert beton dari perusahaan ini memenuhi kebutuhan proyek drainase
+      saya. Kualitas dan dimensi sesuai spesifikasi.
+    response: Kami senang produk boxculvert beton kami membantu proyek Anda.
+    rating: 5
+  - avatar: /images/admin/avatar3.png
+    name: Bambang
+    message: >-
+      Concrete pump dari perusahaan ini memudahkan pekerjaan konstruksi dengan
+      kinerja tinggi.
+    response: Terima kasih telah memilih layanan kami untuk kebutuhan pengecoran.
+    rating: 4
+  - avatar: /images/admin/avatar4.png
+    name: Gilang
+    message: >-
+      Produk beton uditch membantu menyelesaikan sistem saluran air dengan
+      presisi.
+    response: Terima kasih telah mempercayakan kebutuhan drainase kepada kami.
+    rating: 4
+  - avatar: /images/admin/avatar5.png
+    name: Maya
+    message: >-
+      Beton panel yang saya gunakan menghemat waktu dalam proses konstruksi.
+      Kualitas dan desain sesuai standar.
+    response: Terima kasih telah memilih solusi beton modern dari kami.
+    rating: 4
+  - avatar: /images/admin/avatar6.png
+    name: Eko
+    message: >-
+      Produk dan layanan beton ready mix dari perusahaan ini tepat waktu dan
+      sesuai kebutuhan.
+    response: Terima kasih telah memilih kami sebagai mitra konstruksi Anda.
+    rating: 4
