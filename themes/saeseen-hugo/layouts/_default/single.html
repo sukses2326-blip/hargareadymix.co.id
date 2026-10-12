@@ -1,5 +1,5 @@
 {{ define "main" }}
-</main>
+<main>
 <header>
   <div class="container">
     <h1>{{ .Title }}</h1>
@@ -20,6 +20,10 @@
         </nav>
         <p class="post-meta">
          <time datetime="{{ .Date.Format "2006-01-02" }}">Dibuat pada {{ .Date.Format "2 January 2006" }}</time>
+        {{/* tools/recycle-posts.js, revise-articles.js and fix-orphans.js keep `date` as the original publish date and bump `lastmod` instead. */}}
+        {{ if and (not .Lastmod.IsZero) (ne (.Lastmod.Format "2006-01-02") (.Date.Format "2006-01-02")) }}
+         <time datetime="{{ .Lastmod.Format "2006-01-02" }}">&middot; Diperbarui {{ .Lastmod.Format "2 January 2006" }}</time>
+        {{ end }}
         <span>Oleh {{ .Site.Params.author }}</span>
         </p>
         <div class="featured-image-container">
@@ -55,7 +59,8 @@
           {{ range $index, $paragraph := $paragraphs }}
            {{ if eq $index 0 }} {{ $newContent = $paragraph }} {{ else }} {{ $newContent = printf "%s<p>%s" $newContent $paragraph }} {{ end }}    
             {{ $count = add $count 1 }}
-            {{ if and (gt $count 3) (lt $relatedCount 3) }}
+            {{/* Guard: a new page may have fewer than 3 related pages (e.g. the first articles in a new section); indexing past the end would abort the whole Hugo build. */}}
+            {{ if and (gt $count 3) (lt $relatedCount 3) (lt $relatedCount (len $shuffledRelated)) }}
               {{ $randomRelated := index $shuffledRelated $relatedCount }}
               {{ $newContent = printf "%s<div class='inline-related-post'>Lainnya: <a href='%s'>%s</a></div>" $newContent $randomRelated.RelPermalink $randomRelated.Title }}
               {{ $relatedCount = add $relatedCount 1 }}
