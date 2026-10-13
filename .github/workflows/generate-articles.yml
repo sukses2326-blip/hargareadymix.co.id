@@ -1,5 +1,5 @@
-# Cloudflare Pages (connected to this repo) rebuilds the site automatically after this push, so no
-# deploy step is needed here.
+# After pushing, this workflow dispatches deploy.yml, which builds Hugo and commits public/
+# (Cloudflare Pages serves only the public/ folder).
 name: Generate Articles from GSC Keywords
 
 on:
@@ -15,6 +15,8 @@ concurrency:
 
 permissions:
   contents: write
+  # Needed to dispatch deploy.yml at the end (GITHUB_TOKEN pushes don't fire `push` workflows).
+  actions: write
 
 jobs:
   generate:
@@ -55,6 +57,7 @@ jobs:
           git config --local user.name "GitHub Action"
 
       - name: Commit and Push Articles
+        id: commit_push
         run: |
           git add content/
           [ -f generated-articles.log ] && git add generated-articles.log
@@ -73,6 +76,7 @@ jobs:
           for i in 1 2 3 4 5; do
             if git push origin HEAD:"${GITHUB_REF_NAME}"; then
               echo "✅ Push succeeded (attempt $i)."
+              echo "published=true" >> "$GITHUB_OUTPUT"
               exit 0
             fi
             if [ "$i" -eq 5 ]; then
@@ -89,3 +93,13 @@ jobs:
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Pushes made with GITHUB_TOKEN don't fire deploy.yml's `push` trigger, so dispatch it
+      # explicitly — otherwise the new commit would sit on the branch with public/ not rebuilt.
+      - name: Trigger Deploy (rebuild public/ now)
+        if: steps.commit_push.outputs.published == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "🚀 Changes pushed — triggering deploy.yml so public/ is rebuilt now..."
+          gh workflow run deploy.yml --ref "${GITHUB_REF_NAME}"

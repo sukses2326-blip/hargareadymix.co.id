@@ -376,8 +376,8 @@ function updateFirstSeenMap(keywordItems) {
 
 async function fetchKeywordsFromGSC() {
   if (IS_DRY_RUN) {
-    if (CUSTOM_KW && !hasMinKeywordWords(CUSTOM_KW, 3)) {
-      console.log(`   ⚠️  --keyword="${CUSTOM_KW}" has < 3 significant words — normally skipped, proceeding anyway since this is an explicit manual --dry-run override.`);
+    if (CUSTOM_KW && !isEligibleKeyword(CUSTOM_KW, 3)) {
+      console.log(`   ⚠️  --keyword="${CUSTOM_KW}" tidak memenuhi syarat keyword (kata sambung / < 3 kata) — normalnya di-skip, proceeding anyway since this is an explicit manual --dry-run override.`);
     }
     const kws = CUSTOM_KW
       ? [{ keyword: CUSTOM_KW, impressions: 50, clicks: 1, ctr: 0.02, position: 9 }]
@@ -404,14 +404,14 @@ async function fetchKeywordsFromGSC() {
     // "itu" don't count — see CONJUNCTION_STOPWORDS above) — very short/generic keywords are
     // too broad and prone to overlapping with other articles.
     .filter(r => {
-      const ok = hasMinKeywordWords(r.keys[0], 3);
+      const ok = isEligibleKeyword(r.keys[0], 3);
       if (!ok) droppedShort.push(r.keys[0]);
       return ok;
     })
     .map(r => ({ keyword: r.keys[0], impressions: r.impressions, clicks: r.clicks, ctr: r.ctr, position: r.position }));
 
   if (droppedShort.length) {
-    console.log(`   ⏭️  ${droppedShort.length} GSC keyword(s) skipped (< 3 significant words): ${droppedShort.slice(0, 5).join(', ')}${droppedShort.length > 5 ? ', ...' : ''}`);
+    console.log(`   ⏭️  ${droppedShort.length} GSC keyword(s) skipped (< 3 kata bermakna atau mengandung kata sambung): ${droppedShort.slice(0, 5).join(', ')}${droppedShort.length > 5 ? ', ...' : ''}`);
   }
 
   // Record first-seen dates for anything new, so "oldest keyword first" ordering below
@@ -473,6 +473,30 @@ function countSignificantWords(text) {
     .filter(Boolean)
     .filter(w => !CONJUNCTION_STOPWORDS.has(w))
     .length;
+}
+
+// HARD FILTER: a keyword that CONTAINS any of these conjunction/preposition words is skipped
+// entirely (not only "not counted"): such phrases are usually fragments or questions
+// ("cor jalan dan", "apa itu beton", "harga beton yang") rather than clean topical keywords.
+// Deliberately NOT included: "per" (harga ... per m3), "apa/apakah", "bisa/dapat" — add them here if wanted.
+const SKIP_CONJUNCTIONS = new Set([
+  'dan', 'atau', 'serta', 'maupun', 'namun', 'tetapi', 'tapi', 'melainkan', 'sedangkan', 'sementara',
+  'adalah', 'yaitu', 'ialah', 'yakni', 'merupakan',
+  'ini', 'itu', 'tersebut',
+  'dengan', 'pada', 'di', 'ke', 'dari', 'untuk', 'oleh', 'akan', 'dalam', 'tentang', 'mengenai', 'demi',
+  'karena', 'sebab', 'agar', 'supaya', 'jika', 'kalau', 'apabila', 'bila', 'ketika', 'saat',
+  'meski', 'meskipun', 'walau', 'walaupun', 'hingga', 'sampai', 'sejak', 'tanpa', 'bagi', 'terhadap',
+  'antara', 'sebagai', 'seperti', 'yang', 'juga', 'pun', 'sehingga', 'lalu', 'kemudian',
+]);
+
+function containsConjunction(text) {
+  return (text || '').toLowerCase().replace(/[^a-z0-9\s-]/g, ' ').split(/\s+/).filter(Boolean)
+    .some(w => SKIP_CONJUNCTIONS.has(w));
+}
+
+// Eligible = at least `min` significant words AND no conjunction/preposition word at all.
+function isEligibleKeyword(text, min = 3) {
+  return !containsConjunction(text) && hasMinKeywordWords(text, min);
 }
 
 function hasMinKeywordWords(text, min = 3) {
@@ -582,13 +606,13 @@ function getKeywordsFromFile() {
   // file previously had NO length check at all, so a manually-added short keyword slipped
   // straight through to article generation. Short entries are left in the file (not
   // removed) so a human can see and fix them; they're just skipped for now.
-  const tooShort = allLines.filter(kw => !hasMinKeywordWords(kw, 3));
+  const tooShort = allLines.filter(kw => !isEligibleKeyword(kw, 3));
   if (tooShort.length) {
-    console.log(`   ⏭️  ${tooShort.length} keyword(s) in keywords.txt skipped (< 3 significant words, left in file for review): ${tooShort.slice(0, 5).join(', ')}${tooShort.length > 5 ? ', ...' : ''}`);
+    console.log(`   ⏭️  ${tooShort.length} keyword(s) in keywords.txt skipped (< 3 kata bermakna atau mengandung kata sambung, dibiarkan di file untuk ditinjau): ${tooShort.slice(0, 5).join(', ')}${tooShort.length > 5 ? ', ...' : ''}`);
   }
 
   return allLines
-    .filter(kw => hasMinKeywordWords(kw, 3))
+    .filter(kw => isEligibleKeyword(kw, 3))
     .map(kw => ({ keyword: kw, impressions: 0, clicks: 0, ctr: 0, position: 0 }));
 }
 
@@ -705,7 +729,7 @@ async function fetchKeywordIdeasFromSerper(seedKeywords) {
   }
 
   const results = [...ideas]
-    .filter(kw => hasMinKeywordWords(kw, 3)) // same rule as GSC: ≥3 significant words, conjunctions excluded
+    .filter(kw => isEligibleKeyword(kw, 3)) // same rule as GSC: ≥3 significant words, NO conjunction words
     .map(kw => ({ keyword: kw, impressions: 0, clicks: 0, ctr: 0, position: 0 }));
 
   console.log(`✅ ${results.length} new keyword idea(s) from Serper.dev (${creditsUsed} credit(s) used this run).`);
@@ -1106,7 +1130,7 @@ async function generateArticle(keyword, relatedCandidates = [], extraNote = '') 
 DESCRIPTION: ${keyword.charAt(0).toUpperCase() + keyword.slice(1)} terbaik untuk hunian dan proyek konstruksi Anda. Temukan tips, harga, dan solusi dari ${CONFIG.SITE_NAME}.
 TAGS: ${keyword.split(' ').slice(0, 3).join(', ')}, beton readymix, HargaReadymix
 ARTIKEL_MULAI
-**${kwTitle}** – salah satu pertanyaan yang sering Kami terima adalah seputar ${keyword}. Artikel ini membahasnya secara ringkas dan praktis.
+Sahabat HR, salah satu pertanyaan yang sering Kami terima seputar ${keyword}. Artikel ini membahasnya secara ringkas dan praktis.
 
 ![${kwTitle}](IMAGE_PLACEHOLDER)
 
@@ -1122,7 +1146,7 @@ ${keyword.charAt(0).toUpperCase() + keyword.slice(1)} merupakan salah satu kebut
 
 ## Penutup
 
-Demikian pembahasan Kami seputar ${keyword}. Apabila Anda membutuhkan konsultasi lebih lanjut, silakan hubungi Kami melalui tombol **Telepon** atau **WhatsApp** yang tersedia di bawah halaman ini.
+Sahabat HR, demikian pembahasan Kami seputar ${keyword}. Apabila membutuhkan konsultasi lebih lanjut, silakan hubungi Kami melalui tombol **Telepon** atau **WhatsApp** yang tersedia di bawah halaman ini.
 `;
     return { raw };
   }
@@ -1229,19 +1253,33 @@ function stripTrailingMarkers(text) {
   return lines.join('\n');
 }
 
-// House article convention (kept identical to the sister site betoncorplus.com): the first line is the bold title followed by an en dash,
-// e.g. "**Judul Artikel** – Paragraf pembuka...". If the AI omitted it, this restores it
-// without touching the rest of the paragraph.
-function ensureBoldOpening(body, title) {
-  const trimmed = body.replace(/^\s+/, '');
-  if (/^\*\*[^*]+\*\*\s*[-–—]/.test(trimmed)) {
-    return trimmed.replace(/^(\*\*[^*]+\*\*)\s*[-–—]\s*/, '$1 – ');
-  }
-  const boldStart = trimmed.match(/^\*\*[^*]+\*\*/);
-  if (boldStart) {
-    return `${boldStart[0]} – ${trimmed.slice(boldStart[0].length).replace(/^\s+/, '')}`;
-  }
-  return `**${title}** – ${trimmed}`;
+// Audience framing (house style): the reader is addressed as "Sahabat HR" ONLY in the first and the
+// last prose paragraph; everywhere else the article says "Anda". The AI is told so in the prompt, and
+// this function GUARANTEES it afterwards (opening fixed, stray mentions in the middle replaced).
+const AUDIENCE = 'Sahabat HR';
+const isProseBlock = b => !/^\s*(#|!\[|<|\[\[|[-*+]\s|\d+[.)]\s|\||\{\{|>)/.test(b);
+
+function lowerFirst(t) { return /^[A-Z][a-z]/.test(t) ? t.charAt(0).toLowerCase() + t.slice(1) : t; }
+
+function withAudience(paragraph) {
+  const t = paragraph.replace(/^\s+/, '');
+  if (new RegExp(`^${AUDIENCE}\\b`, 'i').test(t)) return t.replace(new RegExp(`^${AUDIENCE}\\b,?\\s*`, 'i'), `${AUDIENCE}, `);
+  return `${AUDIENCE}, ${lowerFirst(t)}`;
+}
+
+function ensureAudienceFraming(body) {
+  // drop a bold-title lead-in ("**Judul** – ...") if the model still wrote one
+  let text = body.replace(/^\s+/, '').replace(/^\*\*[^*\n]+\*\*\s*[-–—]\s*/, '');
+  const blocks = text.split(/\n{2,}/);
+  const prose = blocks.map((b, i) => (isProseBlock(b) ? i : -1)).filter(i => i >= 0);
+  if (!prose.length) return text;
+  const first = prose[0], last = prose[prose.length - 1];
+  return blocks.map((b, i) => {
+    if (i === first) return withAudience(b);
+    if (i === last && new RegExp(AUDIENCE, 'i').test(b)) return b;
+    if (i === last) return withAudience(b);
+    return b.replace(new RegExp(`\\b${AUDIENCE}\\b,?(\\s*)`, 'gi'), (m, sp) => `Anda${sp}`);
+  }).join('\n\n');
 }
 
 function parseAndSave(raw, keyword, slug, imagePath, relatedCandidates = []) {
@@ -1267,7 +1305,7 @@ function parseAndSave(raw, keyword, slug, imagePath, relatedCandidates = []) {
 
   if (!body.trim()) body = raw;
   body = stripTrailingMarkers(body);
-  body = ensureBoldOpening(body, title);
+  body = ensureAudienceFraming(body);
 
   body = body.replace(/IMAGE_PLACEHOLDER/g, imagePath);
 
@@ -1435,6 +1473,10 @@ function validateArticle(filePath) {
   if (!content.includes('toc: true'))       issues.push('⚠️  toc tidak aktif');
 
   const bodyOnly = content.replace(/^---[\s\S]*?\n---/, '').trim();
+  const mentions = (bodyOnly.match(/Sahabat HR/gi) || []).length;
+  if (!/^Sahabat HR, /.test(bodyOnly)) issues.push('⚠️  Paragraf pembuka tidak diawali "Sahabat HR, "');
+  if (mentions < 2) issues.push('⚠️  Paragraf penutup tidak menyebut "Sahabat HR"');
+  if (mentions > 2) issues.push(`⚠️  "Sahabat HR" muncul ${mentions}x (seharusnya hanya di paragraf pertama & terakhir)`);
   const wordCount = bodyOnly.split(/\s+/).length;
   if (wordCount < 300) issues.push(`⚠️  Konten terlalu pendek: ${wordCount} kata`);
 

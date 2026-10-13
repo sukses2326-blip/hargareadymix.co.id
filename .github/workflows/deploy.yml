@@ -1,7 +1,7 @@
-# OPTIONAL — only for GitHub Pages hosting (public/ committed to the repo, like betoncorplus.com).
-# Cloudflare Pages users do NOT need this. To enable: move to .github/workflows/deploy.yml and
-# re-add a "gh workflow run deploy.yml" step to the generate/revise/fix-orphans workflows
-# (pushes made with GITHUB_TOKEN do not fire `push` triggers).
+# Builds the site with Hugo and commits the result to public/ (Cloudflare Pages serves only the
+# public/ folder). Runs on every push (except pushes that only touch public/) and is also
+# dispatched explicitly by generate-articles / revise-articles / fix-orphans / recycle, because
+# pushes made with GITHUB_TOKEN do not fire `push` triggers.
 name: Deploy Site
 on:
   workflow_dispatch:
@@ -13,12 +13,13 @@ concurrency:
   cancel-in-progress: false
 permissions:
   contents: write
-  pages: write
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
       - uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: '0.124.0'
@@ -28,12 +29,19 @@ jobs:
           node-version: '20.14.0'
           cache: 'npm'
       - run: npm ci
+      # prebuild (spintax -> data/testimonials.yaml) + hugo --minify + robots.txt/sitemap.xml.gz
       - run: npm run build
       - name: Commit and push public/
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add public/
+          git add -A public/
           git diff --staged --quiet && { echo "public/ unchanged"; exit 0; }
           git commit -m "Build site"
-          git push origin HEAD:"${GITHUB_REF_NAME}"
+          for i in 1 2 3 4 5; do
+            git push origin HEAD:"${GITHUB_REF_NAME}" && exit 0
+            sleep $(( (RANDOM % 10) + 5 ))
+            git fetch origin "${GITHUB_REF_NAME}"
+            git rebase -X theirs "origin/${GITHUB_REF_NAME}"
+          done
+          echo "❌ push failed after 5 attempts" >&2; exit 1
