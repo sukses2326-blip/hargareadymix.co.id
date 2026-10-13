@@ -10,7 +10,7 @@ featured_image: "/images/artikel/cor-jalan-rigid.jpg"
 toc: true
 draft: false
 ---
-**Cor Jalan Rigid: Ketahanan, Aplikasi, dan Estimasi Biaya di Jabodetabek** – Mencari solusi konstruksi jalan yang tahan lama dan minim perawatan? Cor jalan rigid, atau beton bertulang jalan, seringkali menjadi pilihan prioritas. Kekuatan dan daya tahannya terhadap lalu lintas padat serta kondisi cuaca ekstrem menjadikannya investasi cerdas. Berbeda dengan metode aspal yang lebih fleksibel, cor jalan rigid menawarkan karakteristik khusus yang penting untuk dipahami.
+**Cor Jalan Rigid: Ketahanan, Aplikasi, dan Estimasi Biaya di Jabodetabek** – Sahabat Hargareadymix.co.id, Mencari solusi konstruksi jalan yang tahan lama dan minim perawatan? Cor jalan rigid, atau beton bertulang jalan, seringkali menjadi pilihan prioritas. Kekuatan dan daya tahannya terhadap lalu lintas padat serta kondisi cuaca ekstrem menjadikannya investasi cerdas. Berbeda dengan metode aspal yang lebih fleksibel, cor jalan rigid menawarkan karakteristik khusus yang penting untuk dipahami.
 
 ## Mengapa Memilih Cor Jalan Rigid Dibanding Alternatif Lain?
 

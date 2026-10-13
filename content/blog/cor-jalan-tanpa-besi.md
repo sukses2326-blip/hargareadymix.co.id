@@ -10,7 +10,7 @@ featured_image: "/images/artikel/cor-jalan-tanpa-besi.jpg"
 toc: true
 draft: false
 ---
-**Cor Jalan Tanpa Besi: Keuntungan, Batasan, dan Panduan Aplikasi** – Pengecoran jalan seringkali identik dengan penggunaan baja tulangan sebagai penambah kekuatan. Akan tetapi, ada alternatif yang kian populer: cor jalan tanpa besi. Walaupun mungkin terasa kurang lazim, teknik ini memiliki relevansinya pada kondisi dan aplikasi tertentu. Seringkali proyek skala kecil yang kurang mempertimbangkan aspek teknis langsung menerapkan cor jalan tanpa besi, tanpa memahami potensi risiko retak dan kegagalan struktur.
+**Cor Jalan Tanpa Besi: Keuntungan, Batasan, dan Panduan Aplikasi** – Sahabat Hargareadymix.co.id, Pengecoran jalan seringkali identik dengan penggunaan baja tulangan sebagai penambah kekuatan. Akan tetapi, ada alternatif yang kian populer: cor jalan tanpa besi. Walaupun mungkin terasa kurang lazim, teknik ini memiliki relevansinya pada kondisi dan aplikasi tertentu. Seringkali proyek skala kecil yang kurang mempertimbangkan aspek teknis langsung menerapkan cor jalan tanpa besi, tanpa memahami potensi risiko retak dan kegagalan struktur.
 
 Penggunaan beton tanpa tulangan ini umumnya cocok untuk area dengan beban lalu lintas rendah, seperti jalan setapak, trotoar, atau area parkir kendaraan pribadi yang jarang digunakan. Kesalahpahaman umum muncul karena biaya awal yang tampak lebih ekonomis dibandingkan penggunaan beton bertulang konvensional. Namun, kekuatan dan umur layan beton tanpa tulangan sangat bergantung pada kualitas campuran, ketebalan pelat, dan kondisi tanah dasar.
 
