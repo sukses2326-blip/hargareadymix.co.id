@@ -34,10 +34,10 @@ Sebagai alternatif, Anda bisa mempertimbangkan penggunaan beton bertulang khusus
 
 ![Contoh Pengecoran Jalan Setapak Tanpa Besi](/images/artikel/cor-jalan-tanpa-besi.jpg)
 
-## Perkiraan Biaya dan Memilih Penyedia yang Tepat di (not detected)
+## Perkiraan Biaya dan Memilih Penyedia yang Tepat
 
-Perkiraan biaya cor jalan tanpa besi bervariasi, bergantung pada luas area, ketebalan pelat, mutu beton, dan biaya tenaga kerja. Sebagai ilustrasi, untuk area seluas 50 m² dengan ketebalan 10 cm dan menggunakan beton readymix K-225, perkiraan biaya material beton adalah 50 m² x 0.1 m x Rp850.000/m³ = Rp4.250.000. Biaya tambahan perlu dianggarkan untuk biaya transportasi beton, tenaga kerja, dan persiapan lahan. Harga ini bersifat estimasi dan dapat berubah sewaktu-waktu — hubungi Kami untuk penawaran terbaru dan paling akurat sesuai kebutuhan proyek Anda di (not detected).
+Perkiraan biaya cor jalan tanpa besi bervariasi, bergantung pada luas area, ketebalan pelat, mutu beton, dan biaya tenaga kerja. Sebagai ilustrasi, untuk area seluas 50 m² dengan ketebalan 10 cm dan menggunakan beton readymix K-225, perkiraan biaya material beton adalah 50 m² x 0.1 m x Rp850.000/m³ = Rp4.250.000. Biaya tambahan perlu dianggarkan untuk biaya transportasi beton, tenaga kerja, dan persiapan lahan. Harga ini bersifat estimasi dan dapat berubah sewaktu-waktu — hubungi Kami untuk penawaran terbaru dan paling akurat sesuai kebutuhan proyek Anda.
 
-Dalam memilih penyedia beton readymix, pilih perusahaan terpercaya dengan reputasi baik. HargaReadymix adalah penyedia beton readymix terkemuka di Jabodetabek dan sekitarnya, menawarkan berbagai mutu beton (K-225 hingga K-400), beton pracetak (u-ditch, box culvert, pagar panel), dan layanan sewa concrete pump. Kami berkomitmen menyediakan produk dan layanan berkualitas tinggi dengan harga yang kompetitif di (not detected).
+Dalam memilih penyedia beton readymix, pilih perusahaan terpercaya dengan reputasi baik. HargaReadymix adalah penyedia beton readymix terkemuka di Jabodetabek dan sekitarnya, menawarkan berbagai mutu beton (K-225 hingga K-400), beton pracetak (u-ditch, box culvert, pagar panel), dan layanan sewa concrete pump. Kami berkomitmen menyediakan produk dan layanan berkualitas tinggi dengan harga yang kompetitif.
 
 Butuh bantuan langsung untuk proyek Anda? Klik tombol **WhatsApp** atau **Telepon** di bawah untuk berkonsultasi dengan tim Kami. [Cor Jalan Beton: Panduan Lengkap Kekuatan, Aplikasi, dan Biaya](/blog/cor-jalan-beton/) [Cor Jalan Rigid: Ketahanan, Aplikasi, dan Estimasi Biaya di Jabodetabek](/blog/cor-jalan-rigid/)
