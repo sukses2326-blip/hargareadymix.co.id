@@ -17,7 +17,9 @@
     "revise": "node tools/revise-articles.js --dry-run --limit=3",
     "find-orphans": "node tools/find-orphans.js",
     "fix-orphans": "node tools/fix-orphans.js --dry-run --limit=3",
-    "patch-site": "node tools/patch-site.js"
+    "patch-site": "node tools/patch-site.js",
+    "clean-articles": "node tools/clean-articles.js",
+    "indexnow:dry": "node tools/indexnow-submit.js --prev=HEAD~1 --head=HEAD --dry-run"
   },
   "keywords": [],
   "author": "",

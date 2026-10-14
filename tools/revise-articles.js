@@ -283,18 +283,36 @@ function stripTrailingMarker(content) {
 }
 
 // ─── Prompt ────────────────────────────────────────────────────────────
+// Location handling exists ONLY here (revision of location-templated pages). When the title has no
+// "di <Lokasi>" part (e.g. blog articles) we must NOT hand the model a fake location value: an earlier
+// version passed the literal "(not detected)" into the prompt and the model dutifully wrote
+// "... untuk proyek Anda di (not detected)" into the articles.
+function locationPromptParts(location) {
+  if (location) {
+    return {
+      locationRule: `TETAP menyebut nama lokasi "${location}" secara alami beberapa kali di seluruh artikel (untuk SEO lokal) — jangan dihapus, jangan diganti nama lokasi lain.`,
+      locationLine: `Lokasi yang harus tetap disebut: ${location}\n`,
+    };
+  }
+  return {
+    locationRule: 'Artikel ini TIDAK terikat lokasi tertentu. JANGAN menambahkan nama lokasi, kota, atau wilayah apapun yang tidak ada di artikel asli, dan JANGAN menulis frasa pengganti lokasi seperti "di (...)", "di wilayah (...)", "not detected", atau tanda kurung kosong sejenisnya. Kalau artikel asli tidak menyebut lokasi, revisi juga tidak menyebutnya.',
+    locationLine: '',
+  };
+}
+
 function buildPrompt(title, location, category, protectedContent, relatedArticlesBlock) {
+  const loc = locationPromptParts(location);
   return [
     {
       role: 'system',
-      content: renderTemplate(PROMPTS.revision.systemTemplate, { location }),
+      content: renderTemplate(PROMPTS.revision.systemTemplate, { locationRule: loc.locationRule }),
     },
     {
       role: 'user',
       content: renderTemplate(PROMPTS.revision.userTemplate, {
         title,
         category,
-        location,
+        locationLine: loc.locationLine,
         length: protectedContent.length,
         wordCount: protectedContent.split(/\s+/).length,
         protectedContent,
@@ -355,6 +373,15 @@ function validateFinalContent(original, revisedContent, location) {
   // The revision is a LIGHT, targeted edit — a big drop in length means the AI over-rewrote/summarized.
   if (revisedContent.length < original.length * 0.8) {
     issues.push(`Revised content too short (${revisedContent.length} vs original ${original.length} characters)`);
+  }
+  // Leftovers the model sometimes invents: fake location, unreplaced tokens, literal "(URL)" link targets.
+  const leftovers = [
+    [/\(\s*not detected\s*\)|\(\s*tidak terdeteksi\s*\)/i, 'placeholder lokasi "(not detected)"'],
+    [/\[\[\[PLACEHOLDER/i, 'token [[[PLACEHOLDER...]]] bocor ke teks'],
+    [/\]\(URL\)/, 'link dengan target literal "(URL)"'],
+  ];
+  for (const [re, label] of leftovers) {
+    if (re.test(revisedContent) && !re.test(original)) issues.push(`Sisa artefak AI: ${label}`);
   }
   // Brand voice: if the original mentioned the brand, the revision must keep it.
   const brandRe = new RegExp(CONFIG.BRAND, 'i');
@@ -450,7 +477,7 @@ async function main() {
     log(`   🔗 ${relatedCandidates.length} related article candidate(s) found for internal linking.`);
 
     try {
-      const messages = buildPrompt(title, location || '(not detected)', category, protectedContent, formatCandidatesForPrompt(relatedCandidates));
+      const messages = buildPrompt(title, location, category, protectedContent, formatCandidatesForPrompt(relatedCandidates));
       let revisedProtected = await callAI(messages); // always call AI, including dry-run, to preview
       revisedProtected = cleanupAIChatter(revisedProtected);
 
@@ -484,7 +511,7 @@ async function main() {
         continue;
       }
 
-      log(`   ✅ Valid (${fmtDuration(Date.now() - tArticle)}) — location "${location}" ✓, ${placeholders.length} placeholders intact ✓`);
+      log(`   ✅ Valid (${fmtDuration(Date.now() - tArticle)}) — location "${location || "(tidak ada)"}" ✓, ${placeholders.length} placeholders intact ✓`);
 
       if (APPLY) {
         // Reassemble using the ORIGINAL FRONTMATTER TEXT (byte-identical apart from lastmod).

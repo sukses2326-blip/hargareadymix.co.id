@@ -37,7 +37,7 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Recycle old posts (sets lastmod, pings IndexNow)
+      - name: Recycle old posts (sets lastmod)
         run: npm run recycle
 
       - name: Configure Git
@@ -50,11 +50,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # static/ is included because recycle-posts.js's IndexNow integration
-          # (tools/lib/index-ping.js) creates a one-time verification file at static/<key>.txt;
-          # .indexnow-key.json remembers the same key across runs.
-          git add content/ static/
-          [ -f .indexnow-key.json ] && git add .indexnow-key.json
+          git add content/
 
           if git diff --staged --quiet; then
             echo "ℹ️  No articles to recycle this week — done."

@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0   # full history: needed to find the previous "Build site" commit for IndexNow
       - uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: '0.124.0'
@@ -29,6 +29,13 @@ jobs:
           node-version: '20.14.0'
           cache: 'npm'
       - run: npm ci
+      # IndexNow: remember which commit the previous deploy was built from and which commit is built now,
+      # so only pages changed in between are submitted — AFTER the site is live (see last step).
+      - name: Remember previous build and ensure IndexNow key
+        run: |
+          echo "PREV_BUILD=$(git log -n1 --format=%H --grep='^Build site$' || true)" >> "$GITHUB_ENV"
+          echo "CONTENT_HEAD=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          node tools/indexnow-submit.js --ensure-key
       # prebuild (spintax -> data/testimonials.yaml) + hugo --minify + robots.txt/sitemap.xml.gz
       - run: npm run build
       - name: Commit and push public/
@@ -36,6 +43,11 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A public/
+          # The IndexNow key + its verification file must stay the same forever and be served at the site root.
+          if [ -f .indexnow-key.json ]; then
+            KEY=$(node -p "require('./.indexnow-key.json').key")
+            git add .indexnow-key.json "static/$KEY.txt"
+          fi
           git diff --staged --quiet && { echo "public/ unchanged"; exit 0; }
           git commit -m "Build site"
           for i in 1 2 3 4 5; do
@@ -45,3 +57,8 @@ jobs:
             git rebase -X theirs "origin/${GITHUB_REF_NAME}"
           done
           echo "❌ push failed after 5 attempts" >&2; exit 1
+      # Runs only after public/ was pushed. Waits for Cloudflare Pages to publish, then submits the
+      # changed URLs to IndexNow (Bing/Yandex/Seznam/Naver). A failure here never fails the deploy.
+      - name: Ping IndexNow (after the site is live)
+        if: success()
+        run: node tools/indexnow-submit.js --prev="$PREV_BUILD" --head="$CONTENT_HEAD" --wait

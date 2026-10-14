@@ -26,25 +26,7 @@
         {{ end }}
         <span>Oleh {{ .Site.Params.author }}</span>
         </p>
-        <div class="featured-image-container">
-          {{ $featuredImage := "" }}
-          {{ if .Params.featured_image }}
-            {{ $featuredImage = .Params.featured_image }}
-          {{ else }}
-            {{ $images := findRE "<img.*?src=\"(.*?)\".*?>" .Content }}
-            {{ if gt (len $images) 0 }}
-              {{ $featuredImage = index $images 0 | replaceRE "<img.*?src=\"(.*?)\".*?>" "$1" }}
-            {{ end }}
-          {{ end }}
-          {{ if $featuredImage }}
-            <img src="{{ $featuredImage }}" alt="{{ .Title }}" class="featured-image" loading="lazy">
-          {{ else }}
-            <img src="/images/admin/featured-image.png" alt="Default Featured Image" class="featured-image" loading="lazy">
-          {{ end }}
-          <div class="featured-image-overlay">
-            <h2 class="overlay-title">{{ .Title }}</h2>
-          </div>
-        </div>
+        {{/* Gambar kecil + overlay judul di atas artikel dihapus; featured_image tetap dipakai untuk og:image di head.html dan kartu di list. */}}
           {{ if and (.Params.toc) (gt .WordCount .Site.Params.tocMinWordCount ) }}
           {{ .TableOfContents }}
           {{ end }}

@@ -2,19 +2,16 @@
  * tools/recycle-posts.js
  *
  * Marks articles that are >= 12 months old (counted from `lastmod`, else `date`) as freshly
- * touched by setting `lastmod:` to today, then notifies IndexNow (Bing/Yandex/...) of the exact
- * URLs. `date:` (the real publish date) is NEVER overwritten — the old root-level script did
+ * touched by setting `lastmod:` to today. `date: (the real publish date) is NEVER overwritten — the old root-level script did
  * that and every recycled article looked newly published. Hugo's sitemap uses `lastmod`.
  *
- * No Hugo build happens here: Cloudflare Pages rebuilds automatically when recycle.yml pushes.
+ * No Hugo build and no IndexNow ping happen here: recycle.yml dispatches deploy.yml, which builds
+ * public/ and (after the site is live) pings IndexNow via tools/indexnow-submit.js.
  */
 const fs   = require('fs');
 const path = require('path');
 const FM   = require('./lib/frontmatter.js');
-const { resolveUrl } = require('./lib/content-url.js');
-const { submitToIndexNow } = require('./lib/index-ping.js');
 
-const SITE_URL   = 'https://hargareadymix.co.id/';
 const contentDir = path.join(__dirname, '..', 'content');
 const now = new Date();
 
@@ -29,7 +26,7 @@ function walkMarkdownFiles(dir) {
   return results;
 }
 
-// Returns the public URL when the file was recycled, otherwise null.
+// Returns true when the file was recycled.
 function recyclePost(filePath) {
   const parsed = FM.parse(fs.readFileSync(filePath, 'utf8'));
   if (!parsed.delim || parsed.data.draft) return null; // no front matter, or unpublished draft
@@ -44,23 +41,12 @@ function recyclePost(filePath) {
 
   const newDate = now.toISOString().split('T')[0];
   fs.writeFileSync(filePath, FM.join(parsed.delim, FM.setLastmod(parsed.rawMatter, newDate, parsed.delim), parsed.body));
-  return resolveUrl(filePath, contentDir, parsed.data);
+  return true;
 }
 
 const markdownFiles = walkMarkdownFiles(contentDir);
 console.log(`📁 ${markdownFiles.length} .md files found in ${contentDir} (recursive).`);
 
-const updatedUrls = [];
-for (const f of markdownFiles) {
-  const url = recyclePost(f);
-  if (url) updatedUrls.push(`${SITE_URL.replace(/\/$/, '')}${url}`);
-}
-
-(async () => {
-  if (updatedUrls.length) {
-    console.log(`${updatedUrls.length} article(s) updated.`);
-    await submitToIndexNow(SITE_URL, updatedUrls);
-  } else {
-    console.log('There are no articles that need to be updated.');
-  }
-})().catch(err => { console.error('\n💥 Fatal error:', err.message); process.exit(1); });
+let updated = 0;
+for (const f of markdownFiles) if (recyclePost(f)) updated++;
+console.log(updated ? `${updated} article(s) updated (lastmod).` : 'There are no articles that need to be updated.');
