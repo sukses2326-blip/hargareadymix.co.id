@@ -250,5 +250,19 @@
     "matchedTitle": "Biaya Cor Bangunan Per Meter: Estimasi Terbaru dan Faktor Penentu di Jabodetabek",
     "taggedAt": "2026-10-26T12:03:50.131Z",
     "algoVersion": 2
+  },
+  "cara menghitung biaya dak rumah": {
+    "reason": "similar to existing article",
+    "matchedFile": "biaya-dak-rumah-per-m2.md",
+    "matchedTitle": "Biaya Dak Rumah Per M2: Estimasi Lengkap dan Faktor Penentu di Jabodetabek 2026",
+    "taggedAt": "2026-10-27T11:23:43.761Z",
+    "algoVersion": 2
+  },
+  "harga dak rumah per meter": {
+    "reason": "similar to existing article",
+    "matchedFile": "biaya-dak-rumah-per-m2.md",
+    "matchedTitle": "Biaya Dak Rumah Per M2: Estimasi Lengkap dan Faktor Penentu di Jabodetabek 2026",
+    "taggedAt": "2026-10-27T11:23:43.781Z",
+    "algoVersion": 2
   }
 }
