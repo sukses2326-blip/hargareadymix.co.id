@@ -18,9 +18,6 @@ biaya dak cor ukuran 6x8
 biaya dak cor ukuran 7x10
 biaya dak rumah dengan bondek
 biaya dak rumah pakai bondek
-biaya membuat tangga rumah cor
-biaya ngecor rumah per meter
-biaya ngedak bondek per meter
 biaya ngedak rumah dengan bondek
 biaya ngedak rumah per m2
 biaya ngedak rumah per meter
