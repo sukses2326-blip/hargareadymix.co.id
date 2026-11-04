@@ -299,5 +299,12 @@
     "matchedTitle": "Harga Pagar Beton Per Meter: Update 2026 & Estimasi Biaya Pemasangan",
     "taggedAt": "2026-11-03T13:26:35.752Z",
     "algoVersion": 2
+  },
+  "harga pasang pagar beton precast": {
+    "reason": "similar to existing article",
+    "matchedFile": "harga-pagar-beton-precast-terpasang.md",
+    "matchedTitle": "Harga Pagar Beton Precast Terpasang: Panduan Lengkap & Estimasi Biaya 2026",
+    "taggedAt": "2026-11-04T13:37:53.352Z",
+    "algoVersion": 2
   }
 }
