@@ -388,7 +388,20 @@
     "/pagar-panel/update-harga-pagar-panel-di-ujung-berung-kota-bandung/",
     "/pompa-beton/update-biaya-sewa-concrete-pump-di-batuceper-kota-tangerang/",
     "/pompa-beton/update-biaya-sewa-concrete-pump-di-bekasi-selatan-kota-bekasi/",
-    "/pompa-beton/update-biaya-sewa-concrete-pump-di-bekasi-timur-kota-bekasi/"
+    "/pompa-beton/update-biaya-sewa-concrete-pump-di-bekasi-timur-kota-bekasi/",
+    "/blog/buis-beton-diameter-1-meter/",
+    "/blog/cara-membuat-cetakan-u-ditch/",
+    "/blog/cara-pemasangan-saluran-u-ditch/",
+    "/blog/daftar-harga-u-ditch-beton/",
+    "/blog/harga-besi-baja-per-batang/",
+    "/blog/harga-besi-ulir-10mm-full/",
+    "/blog/harga-beton-per-meter-kubik/",
+    "/pagar-panel/update-harga-pagar-panel-di-tangerang/",
+    "/pompa-beton/update-biaya-sewa-concrete-pump-di-arcamanik-kota-bandung/",
+    "/pompa-beton/update-biaya-sewa-concrete-pump-di-babakan-madang-kab-bogor/",
+    "/pompa-beton/update-biaya-sewa-concrete-pump-di-bandung-wetan-kota-bandung/",
+    "/pompa-beton/update-biaya-sewa-concrete-pump-di-bandung/",
+    "/pompa-beton/update-biaya-sewa-concrete-pump-di-benda-kota-tangerang/"
   ],
   "failed": {
     "/blog/cor-rumah-habis-berapa/": 1,
@@ -422,10 +435,11 @@
     "/blog/buis-beton-diameter-1-meter/": 1,
     "/pagar-panel/update-harga-pagar-panel-di-tangerang/": 1,
     "/pompa-beton/update-biaya-sewa-concrete-pump-di-arcamanik-kota-bandung/": 1,
-    "/pompa-beton/update-biaya-sewa-concrete-pump-di-babakan-ciparay-kota-bandung/": 1,
+    "/pompa-beton/update-biaya-sewa-concrete-pump-di-babakan-ciparay-kota-bandung/": 2,
     "/pompa-beton/update-biaya-sewa-concrete-pump-di-babakan-madang-kab-bogor/": 1,
     "/pompa-beton/update-biaya-sewa-concrete-pump-di-bandung-wetan-kota-bandung/": 1,
     "/pompa-beton/update-biaya-sewa-concrete-pump-di-bandung/": 1,
-    "/pompa-beton/update-biaya-sewa-concrete-pump-di-batununggal-kota-bandung/": 1
+    "/pompa-beton/update-biaya-sewa-concrete-pump-di-batununggal-kota-bandung/": 2,
+    "/pompa-beton/update-biaya-sewa-concrete-pump-di-bojongloa-kaler-kota-bandung/": 1
   }
 }
