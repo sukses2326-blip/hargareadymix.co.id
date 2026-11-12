@@ -55,8 +55,6 @@ harga besi ulir untuk pagar
 harga beton pracetak u ditch
 harga beton precast untuk rumah
 harga borongan pagar panel beton
-harga borongan pasang pagar panel
-harga borongan pasang panel beton
 harga buis beton 1 meter
 harga buis beton 100 cm
 harga buis beton 20 cm
@@ -65,7 +63,6 @@ harga buis beton 40 cm
 harga buis beton 50 cm
 harga buis beton 60 cm
 harga buis beton 80 cm
-harga buis beton 80x 100
 harga buis beton diameter 30
 harga buis beton diameter 60
 harga buis beton diameter 80
