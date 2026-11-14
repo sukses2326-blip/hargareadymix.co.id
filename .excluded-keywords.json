@@ -586,5 +586,26 @@
     "matchedTitle": "Biaya Buat Dak Per Meter: Panduan Lengkap & Estimasi Terbaru 2026",
     "taggedAt": "2026-11-13T13:45:25.199Z",
     "algoVersion": 2
+  },
+  "harga saluran air beton precast": {
+    "reason": "similar to existing article",
+    "matchedFile": "harga-buis-beton-saluran-air.md",
+    "matchedTitle": "Harga Buis Beton Saluran Air: Panduan Lengkap Ukuran, Aplikasi, dan Estimasi Biaya 2026",
+    "taggedAt": "2026-11-14T12:49:49.601Z",
+    "algoVersion": 2
+  },
+  "harga sumur resapan buis beton": {
+    "reason": "similar to existing article",
+    "matchedFile": "harga-buis-beton-sumur-resapan.md",
+    "matchedTitle": "Harga Buis Beton Sumur Resapan: Panduan Lengkap Ukuran, Aplikasi, dan Estimasi Biaya 2026",
+    "taggedAt": "2026-11-14T12:49:49.607Z",
+    "algoVersion": 2
+  },
+  "harga tutup septic tank beton": {
+    "reason": "similar to existing article",
+    "matchedFile": "harga-buis-beton-septic-tank.md",
+    "matchedTitle": "Harga Buis Beton Septic Tank: Panduan Lengkap Ukuran, Material, dan Estimasi Biaya 2026",
+    "taggedAt": "2026-11-14T12:49:49.624Z",
+    "algoVersion": 2
   }
 }
