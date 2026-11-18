@@ -628,5 +628,12 @@
     "matchedTitle": "Harga Cetakan Gorong Gorong Beton: Panduan Lengkap & Estimasi Biaya 2026",
     "taggedAt": "2026-11-16T14:29:24.439Z",
     "algoVersion": 2
+  },
+  "harga gorong gorong ukuran kecil": {
+    "reason": "similar to existing article",
+    "matchedFile": "harga-gorong-gorong-ukuran-80.md",
+    "matchedTitle": "Harga Gorong Gorong Ukuran 80: Panduan Lengkap Pemilihan, Pemasangan, dan Estimasi Biaya 2026",
+    "taggedAt": "2026-11-18T14:55:47.660Z",
+    "algoVersion": 2
   }
 }
